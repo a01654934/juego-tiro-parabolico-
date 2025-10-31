@@ -1,5 +1,4 @@
-"""
-Cannon — versión rápida y sin fin:
+#Cannon — versión rápida y sin fin:
 1) Proyectil y balones (targets) se mueven más rápido.
 2) El juego nunca termina: los targets que salen se reposicionan.
 """
@@ -55,11 +54,25 @@ def move():
 
     # Mover targets más rápido
     for target in targets:
+<<<<<<< HEAD
         target.x -= TARGET_SPEED
+=======
+        target.x -= 0.5
+ 
+ # Reposicionar balones que salen por la izquierda
+        if target.x < -200:
+            target.x = 200
+            target.y = randrange(-150, 150)
+>>>>>>> origin/main
 
     # Física del proyectil
     if inside(ball):
+<<<<<<< HEAD
         speed.y -= GRAVITY
+=======
+        # Reducir la gravedad para que el proyectil sea más rápido
+        speed.y -= 0.35  # Cambiado de 0.35 a 0.25 (menos gravedad)
+>>>>>>> origin/main
         ball.move(speed)
 
     # Si la bola sale de pantalla, se resetea para permitir otro disparo
@@ -85,8 +98,13 @@ def move():
 
     draw()
 
+<<<<<<< HEAD
     # Loop continuo
     ontimer(move, TICK_MS)
+=======
+    # El juego nunca termina - eliminar la condición de retorno
+    ontimer(move, 50)  # Cambiado de 50 a 30 (más frames por segundo)
+>>>>>>> origin/main
 
 # Setup turtle
 setup(420, 420, 370, 0)
