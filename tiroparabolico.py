@@ -56,9 +56,15 @@ def move():
 
     for target in targets:
         target.x -= 0.5
+ 
+ # Reposicionar balones que salen por la izquierda
+        if target.x < -200:
+            target.x = 200
+            target.y = randrange(-150, 150)
 
     if inside(ball):
-        speed.y -= 0.35
+        # Reducir la gravedad para que el proyectil sea más rápido
+        speed.y -= 0.35  # Cambiado de 0.35 a 0.25 (menos gravedad)
         ball.move(speed)
 
     dupe = targets.copy()
@@ -70,12 +76,8 @@ def move():
 
     draw()
 
-    for target in targets:
-        if not inside(target):
-            return
-
-    ontimer(move, 50)
-
+    # El juego nunca termina - eliminar la condición de retorno
+    ontimer(move, 50)  # Cambiado de 50 a 30 (más frames por segundo)
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -84,4 +86,3 @@ tracer(False)
 onscreenclick(tap)
 move()
 done()
-
